@@ -22,10 +22,9 @@ export default function Header({ onComplete }: HeaderProps) {
 
   useEffect(() => {
     // 1. 100% GPU-ACCELERATED INFINITE STRIPES (No Repaint Lag)
-    // Hum background position ki bajaye element ko X-axis par translate kar rahe hain
     gsap.to([topStripeRef.current, bottomStripeRef.current], {
-      x: -84.85, // Exact width of one repeating pattern
-      duration: 0.35, // Bohat fast aur smooth
+      x: -84.85, 
+      duration: 0.35, 
       repeat: -1,
       ease: "none"
     });
@@ -41,7 +40,7 @@ export default function Header({ onComplete }: HeaderProps) {
     tl.to(glowingLineRef.current, {
       scaleX: 1,
       opacity: 1,
-      duration: 0.25, // Quick strike
+      duration: 0.25,
       ease: "expo.out"
     });
 
@@ -49,8 +48,8 @@ export default function Header({ onComplete }: HeaderProps) {
     const shutterVal = { val: 50 };
     tl.to(shutterVal, {
       val: 0,
-      duration: 0.3, // Bohat tezi se khulega
-      ease: "power4.out", // Ek dam se snap open hoga
+      duration: 0.3, 
+      ease: "power4.out", 
       onUpdate: () => {
         if (shutterWrapperRef.current) {
           shutterWrapperRef.current.style.clipPath = `inset(${shutterVal.val}% 0% ${shutterVal.val}% 0%)`;
@@ -65,7 +64,7 @@ export default function Header({ onComplete }: HeaderProps) {
     tl.to(progressObj, {
       val: 100,
       duration: 2.8, 
-      ease: "none", // Linear speed, no getting stuck
+      ease: "none", 
       onUpdate: () => {
         setDisplayProgress(Math.floor(progressObj.val));
       }
@@ -101,7 +100,7 @@ export default function Header({ onComplete }: HeaderProps) {
   return (
     <div
       ref={preloaderRef}
-      className="fixed inset-0 z-60 overflow-hidden"
+      className="fixed inset-0 z-60 overflow-hidden select-none"
       style={{ fontFamily: "'Satoshi', sans-serif" }} 
     >
       {/* ==============================================
@@ -114,14 +113,13 @@ export default function Header({ onComplete }: HeaderProps) {
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_#2a2a35_0%,_transparent_100%)] opacity-60"></div>
         <div className="absolute bottom-0 left-0 w-full h-4 sm:h-6 border-b-4 border-[#22223b] shadow-2xl z-20 overflow-hidden">
-          {/* Note the extra width `w-[calc(100%+100px)]` to allow translation without cutting off */}
           <div
             ref={topStripeRef}
             className="w-[calc(100%+100px)] h-full"
             style={{
               backgroundImage: `repeating-linear-gradient(45deg, #22223b, #22223b 30px, #F7B000 30px, #F7B000 60px)`,
               backgroundSize: "84.85px 84.85px",
-              willChange: "transform" // 100% GPU optimization
+              willChange: "transform"
             }}
           />
         </div>
@@ -143,7 +141,7 @@ export default function Header({ onComplete }: HeaderProps) {
             style={{
               backgroundImage: `repeating-linear-gradient(45deg, #22223b, #22223b 30px, #F7B000 30px, #F7B000 60px)`,
               backgroundSize: "84.85px 84.85px",
-              willChange: "transform" // 100% GPU optimization
+              willChange: "transform"
             }}
           />
         </div>
@@ -171,42 +169,49 @@ export default function Header({ onComplete }: HeaderProps) {
             transform: "translateZ(0)", 
             backfaceVisibility: "hidden" 
           }}
-          className="w-full max-w-3xl"
+          className="w-full max-w-md"
         >
           {/* Main Glass Box with Cyberpunk Cut Corners */}
           <div 
-            className="relative flex flex-col items-center justify-center space-y-6 w-full p-10 md:p-16 bg-[#22223b]/80 backdrop-blur-xl border-[4px] border-[#F7B000]"
-            style={{ clipPath: "polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px)" }}
+            className="relative flex flex-col items-center justify-center space-y-5 w-full p-8 md:p-10 bg-[#22223b]/95 backdrop-blur-2xl border-[4px] border-[#F7B000]"
+            style={{ clipPath: "polygon(25px 0, 100% 0, 100% calc(100% - 25px), calc(100% - 25px) 100%, 0 100%, 0 25px)" }}
           >
-            {/* Sharp Cut Badge */}
-            <div 
-              className="px-8 py-2 bg-[#F7B000] text-[#22223b] uppercase tracking-[0.4em] text-[10px] md:text-sm font-black"
-              style={{ clipPath: "polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)" }}
-            >
-              TECHHOUSE ENGINE KERNEL
+            {/* OFFICIAL LOGO INTEGRATION (Prominent & Clear) */}
+            <div className="relative h-16 w-36 sm:h-20 sm:w-44 flex items-center justify-center bg-black p-2 border-2 border-[#F7B000] shadow-[4px_4px_0px_0px_#FF003C]">
+              <img 
+                src="/logo1.webp" 
+                alt="TechHouse Gaming Logo" 
+                className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(247,176,0,0.5)]"
+              />
             </div>
 
-            {/* Massive Aggressive Counter (Italic + Text Clipping for AAA look) */}
-            <div className="flex justify-center items-end leading-none py-4">
-              <span 
-                className="text-[7.5rem] sm:text-[11rem] md:text-[14rem] font-black italic tracking-tighter drop-shadow-2xl text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400"
-              >
+            {/* Sharp Cut Badge */}
+            <div 
+              className="px-6 py-1.5 bg-[#F7B000] text-[#22223b] uppercase tracking-[0.3em] text-[9px] md:text-xs font-black"
+              style={{ clipPath: "polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" }}
+            >
+              TECHHOUSE GAMING KERNEL
+            </div>
+
+            {/* Scaled-down Balanced Counter */}
+            <div className="flex justify-center items-end leading-none py-2">
+              <span className="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter drop-shadow-lg text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
                 {displayProgress}
               </span>
-              <span className="text-4xl sm:text-5xl md:text-6xl font-black italic text-[#FF003C] mb-4 md:mb-8 ml-2">
+              <span className="text-2xl sm:text-3xl md:text-4xl font-black italic text-[#FF003C] mb-2 sm:mb-3 ml-1">
                 %
               </span>
             </div>
 
             {/* Smooth Loading Bar Line */}
-            <div className="w-full max-w-sm h-1.5 bg-[#110E1B] overflow-hidden skew-x-[-20deg]">
+            <div className="w-full max-w-xs h-1.5 bg-[#110E1B] overflow-hidden skew-x-[-20deg]">
                <div 
                  className="h-full bg-[#F7B000]"
                  style={{ width: `${displayProgress}%`, transition: 'width 0.1s linear' }}
                ></div>
             </div>
 
-            <div className="text-[10px] sm:text-xs md:text-sm text-[#F7B000] font-bold tracking-[0.3em] uppercase mt-2">
+            <div className="text-[9px] sm:text-[10px] text-[#F7B000] font-bold tracking-[0.3em] uppercase mt-1">
               SYSTEM INITIALIZING...
             </div>
           </div>
