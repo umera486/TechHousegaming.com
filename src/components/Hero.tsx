@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion"; // Added 'Variants' import
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
@@ -20,8 +20,8 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [techWords.length]);
 
-  // Framer Motion Variants
-  const containerVariants = {
+  // Framer Motion Variants for Staggered Reveal (Strictly Typed)
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -29,9 +29,17 @@ export default function Hero() {
     }
   };
 
-  const textItemVariants = {
+  const textItemVariants: Variants = {
     hidden: { opacity: 0, y: 15 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8, 
+        // TypeScript Fix: Explicitly typing the array as a 4-number tuple
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number] 
+      } 
+    }
   };
 
   return (
@@ -44,9 +52,9 @@ export default function Hero() {
         <motion.div 
           initial={{ clipPath: "polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%)", filter: "brightness(1.5) blur(10px)" }}
           animate={{ clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)", filter: "brightness(0.7) blur(0px)" }}
-          transition={{ duration: 1.4, ease: [0.65, 0, 0.15, 1] }}
+          transition={{ duration: 1.4, ease: [0.65, 0, 0.15, 1] as [number, number, number, number] }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('/background1.webp')` }}
+          style={{ backgroundImage: `url('/background1.png')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/80" />
       </div>
@@ -67,7 +75,6 @@ export default function Hero() {
             </span>
           </motion.div>
           
-          {/* MOBILE FIX: Text size increased to 11vw (from 9.5vw). Desktop remains md:text-[5.5vw] */}
           <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] leading-[0.95]">
             MOBILE <span className="text-[#F7B000]">GAMES</span>
           </motion.h1>
@@ -120,7 +127,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: "15vh" }}
           animate={{ opacity: 1, y: "0vh" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number], delay: 0.8 }}
           className="absolute bottom-0 right-1/2 translate-x-[45%] sm:translate-x-[35%] md:translate-x-[15%] h-[52vh] sm:h-[60vh] md:h-[80vh] lg:h-[85vh] xl:h-[90vh] z-20 pointer-events-auto filter drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)]"
         >
           <img 
@@ -133,7 +140,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: "15vh" }}
           animate={{ opacity: 1, y: "0vh" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number], delay: 0.9 }}
           className="absolute bottom-0 left-1/2 -translate-x-[45%] sm:-translate-x-[35%] md:-translate-x-[15%] h-[52vh] sm:h-[60vh] md:h-[80vh] lg:h-[85vh] xl:h-[90vh] z-30 pointer-events-auto filter drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)]"
         >
           <img 
@@ -149,11 +156,11 @@ export default function Hero() {
           ======================================================== */}
       <div className="absolute inset-0 z-30 pointer-events-none transform-gpu w-full max-w-[1440px] mx-auto">
         
-        {/* --- DESKTOP ONLY HUD: Hidden on Mobile --- */}
+        {/* --- DESKTOP ONLY HUD --- */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 1.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
           className="absolute top-[50%] sm:top-1/2 -translate-y-1/2 left-4 xl:left-8 flex-col max-w-[240px] xl:max-w-[280px] pointer-events-auto hidden md:flex"
         >
           <div className="bg-black/40 p-4 xl:p-5 border-l-[3px] border-[#F7B000] backdrop-blur-md">
