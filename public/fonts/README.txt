@@ -1,0 +1,1 @@
+Place Satoshi-Variable.woff2 in this folder. Download the official Satoshi font from https://github.com/arrowtype/Satoshi or a reliable font library. For now, only Satoshi-Variable.woff2 is required for ultra-premium cyberpunk esports styling as implemented in Header.tsx.

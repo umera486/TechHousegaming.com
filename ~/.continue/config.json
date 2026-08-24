@@ -1,0 +1,10 @@
+{
+  "models": [
+    {
+      "title": "Groq Llama 3",
+      "provider": "groq",
+      "model": "llama3-70b-8192",
+      "apiKey": "gsk_placeholder_key_remove_me"
+    }
+  ]
+}
