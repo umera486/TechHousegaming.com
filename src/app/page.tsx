@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   // Application initial load state (Preloader chalana hai ya nahi)
@@ -10,13 +11,13 @@ export default function Home() {
 
   return (
     <main className="relative w-full min-h-screen bg-[#110E1B]">
-      {/* SPA Routing Logic: Agar loading true hai toh Header(Preloader) dikhao, warna Navbar aur content */}
+      {/* SPA Routing Logic: Agar loading true hai toh Header(Preloader) dikhao, warna Navbar aur Hero Section */}
       {isLoading ? (
         <Header onComplete={() => setIsLoading(false)} />
       ) : (
         <>
           <Navbar />
-          {/* Yahan baad mein hum apna 3D Hero Component lagayenge jisme background video aur characters float karenge */}
+          <Hero />
         </>
       )}
     </main>

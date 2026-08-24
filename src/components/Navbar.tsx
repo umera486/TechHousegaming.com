@@ -125,7 +125,7 @@ export default function Navbar() {
                   TECHHOUSE
                 </span>
                 <span className="text-[#22223b] font-black text-lg sm:text-xl tracking-tighter uppercase">
-                  GAMING
+                  GAMES
                 </span>
               </div>
               <span className="text-[10px] font-bold text-white bg-[#22223b] px-1.5 py-0.5 tracking-widest mt-1 uppercase w-max border border-black font-mono">
