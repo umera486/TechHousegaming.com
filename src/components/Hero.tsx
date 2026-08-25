@@ -54,7 +54,7 @@ export default function Hero() {
           animate={{ clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)", filter: "brightness(0.7) blur(0px)" }}
           transition={{ duration: 1.4, ease: [0.65, 0, 0.15, 1] as [number, number, number, number] }}
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('/background1.png')` }}
+          style={{ backgroundImage: `url('/background1.webp')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/80" />
       </div>
