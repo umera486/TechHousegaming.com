@@ -1,26 +1,38 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap');
 @import 'tailwindcss';
+/* Baki tumhari 40 lines exactly waisi hi rahengi */
 
 :root {
-  --background: #020817;
-  --foreground: #e2e8f0;
+   --background: #0a0a0f;
+   --foreground: #e2e8f0;
 }
+/* ... baki sara tumhara code waisa hi rahega ... */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Satoshi is now the absolute default font for the entire app */
+  --font-sans: 'Satoshi', var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Cinematic scroll - hiding default ugly scrollbars */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Chrome, Safari and Opera scrollbar hiding */
+::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
 * {
@@ -28,6 +40,6 @@ body {
 }
 
 ::selection {
-  background: rgba(34, 211, 238, 0.25);
-  color: white;
+  background: rgba(247, 176, 0, 0.9); /* Brutalist Yellow selection */
+  color: #0a0a0f;
 }
