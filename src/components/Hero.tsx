@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion"; // Added 'Variants' import
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
@@ -20,12 +20,12 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [techWords.length]);
 
-  // Framer Motion Variants for Staggered Reveal (Strictly Typed)
+  // Framer Motion Variants for Staggered Reveal (Strictly Typed & GPU Accelerated)
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.7 }
+      transition: { staggerChildren: 0.15, delayChildren: 0.5 }
     }
   };
 
@@ -36,31 +36,30 @@ export default function Hero() {
       y: 0, 
       transition: { 
         duration: 0.8, 
-        // TypeScript Fix: Explicitly typing the array as a 4-number tuple
         ease: [0.16, 1, 0.3, 1] as [number, number, number, number] 
       } 
     }
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-[#0a0a0f] overflow-hidden flex items-center justify-center select-none">
+    <section className="relative w-full min-h-screen bg-[#0a0a0f] overflow-hidden flex items-center justify-center select-none transform-gpu">
       
       {/* ========================================================
-          LAYER 0: SMOOTH LINEAR WAVE BACKGROUND
+          LAYER 0: SMOOTH LINEAR WAVE BACKGROUND (GPU ACCELERATED)
           ======================================================== */}
       <div className="absolute inset-0 z-0 transform-gpu overflow-hidden pointer-events-none">
         <motion.div 
           initial={{ clipPath: "polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%)", filter: "brightness(1.5) blur(10px)" }}
           animate={{ clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)", filter: "brightness(0.7) blur(0px)" }}
           transition={{ duration: 1.4, ease: [0.65, 0, 0.15, 1] as [number, number, number, number] }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transform-gpu"
           style={{ backgroundImage: `url('/background1.webp')` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-[#0a0a0f]/80" />
       </div>
 
       {/* ========================================================
-          LAYER 1: TYPOGRAPHY & MOBILE HUD (Under Heading)
+          LAYER 1: TYPOGRAPHY & MOBILE HUD (The Typography Masterclass)
           ======================================================== */}
       <div className="absolute top-[12vh] sm:top-[15vh] inset-x-0 z-10 flex flex-col items-center text-center pointer-events-none transform-gpu px-4 w-full">
         <motion.div
@@ -70,26 +69,29 @@ export default function Hero() {
           className="flex flex-col items-center w-full"
         >
           <motion.div variants={textItemVariants} className="mb-2 sm:mb-4">
-            <span className="text-[#F7B000] font-black uppercase tracking-[0.25em] text-[9px] sm:text-xs md:text-sm drop-shadow-md">
-              PAKISTAN'S LEADING
+            <span className="text-[#F7B000] font-black uppercase tracking-[0.3em] text-[10px] sm:text-xs md:text-sm drop-shadow-md font-mono">
+              // PAKISTAN'S PREMIER STUDIO
             </span>
           </motion.div>
           
-          <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] leading-[0.95]">
-            MOBILE <span className="text-[#F7B000]">GAMES</span>
+          {/* Line 1: Mobile Games */}
+          <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] leading-[0.95]">
+            MOBILE <span className="text-[#F7B000] drop-shadow-[0_0_35px_rgba(247,176,0,0.4)]">GAMES</span>
           </motion.h1>
           
-          <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] leading-[0.95]">
+          {/* Line 2: Developers & */}
+          <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.9)] sm:[-webkit-text-stroke:3px_rgba(255,255,255,0.9)] drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] leading-[0.95] my-1">
             DEVELOPERS &
           </motion.h1>
           
-          <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.9)] leading-[0.95]">
-            PUBLISHERS
+          {/* Line 3: Publishers */}
+          <motion.h1 variants={textItemVariants} className="text-[11vw] sm:text-[8.5vw] md:text-[5.5vw] lg:text-[4.5vw] font-black uppercase tracking-tighter text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] leading-[0.95]">
+            PUBLISHERS<span className="text-[#FF003C]">.</span>
           </motion.h1>
 
-          {/* --- MOBILE ONLY HUD: Shows under heading on mobile, hidden on desktop --- */}
+          {/* --- MOBILE ONLY HUD --- */}
           <motion.div variants={textItemVariants} className="flex md:hidden flex-col items-center mt-6 w-full max-w-[280px] pointer-events-auto z-50 text-left">
-            <div className="bg-black/50 p-3 sm:p-4 border-l-[2px] border-[#F7B000] backdrop-blur-md w-full">
+            <div className="bg-black/60 p-3 sm:p-4 border-l-[2px] border-[#F7B000] backdrop-blur-md w-full shadow-xl">
               <h3 className="text-[#F7B000] font-black uppercase text-[8px] sm:text-[9px] tracking-widest mb-1.5 opacity-90">
                 CORE DIRECTIVE
               </h3>
@@ -97,7 +99,7 @@ export default function Hero() {
                 We are passionate to find new & innovative technologies and implement them in our games. We are Exploring
                 <br className="my-1" />
                 
-                <span className="inline-block min-w-[130px] h-[18px] text-white font-bold bg-black/60 px-1.5 py-0 border border-white/5 overflow-hidden align-middle relative my-0.5">
+                <span className="inline-block min-w-[130px] h-[18px] text-white font-bold bg-black/80 px-1.5 py-0 border border-white/10 overflow-hidden align-middle relative my-0.5">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentTechIndex}
@@ -121,19 +123,19 @@ export default function Hero() {
       </div>
 
       {/* ========================================================
-          LAYER 2: ABSOLUTE CENTER-ANCHORED MASSIVE CHARACTERS
+          LAYER 2: ABSOLUTE CENTER-ANCHORED MASSIVE CHARACTERS (GPU)
           ======================================================== */}
-      <div className="absolute inset-x-0 bottom-0 z-20 pointer-events-none w-full h-full overflow-hidden">
+      <div className="absolute inset-x-0 bottom-0 z-20 pointer-events-none w-full h-full overflow-hidden transform-gpu">
         <motion.div
           initial={{ opacity: 0, y: "15vh" }}
           animate={{ opacity: 1, y: "0vh" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number], delay: 0.8 }}
-          className="absolute bottom-0 right-1/2 translate-x-[45%] sm:translate-x-[35%] md:translate-x-[15%] h-[52vh] sm:h-[60vh] md:h-[80vh] lg:h-[85vh] xl:h-[90vh] z-20 pointer-events-auto filter drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)]"
+          className="absolute bottom-0 right-1/2 translate-x-[45%] sm:translate-x-[35%] md:translate-x-[15%] h-[52vh] sm:h-[60vh] md:h-[80vh] lg:h-[85vh] xl:h-[90vh] z-20 pointer-events-auto filter drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)] transform-gpu"
         >
           <img 
             src="/chr1.png" 
             alt="Tactical Operative 1" 
-            className="h-full w-auto max-w-none object-contain object-bottom"
+            className="h-full w-auto max-w-none object-contain object-bottom transform-gpu"
           />
         </motion.div>
 
@@ -141,12 +143,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: "15vh" }}
           animate={{ opacity: 1, y: "0vh" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number], delay: 0.9 }}
-          className="absolute bottom-0 left-1/2 -translate-x-[45%] sm:-translate-x-[35%] md:-translate-x-[15%] h-[52vh] sm:h-[60vh] md:h-[80vh] lg:h-[85vh] xl:h-[90vh] z-30 pointer-events-auto filter drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)]"
+          className="absolute bottom-0 left-1/2 -translate-x-[45%] sm:-translate-x-[35%] md:-translate-x-[15%] h-[52vh] sm:h-[60vh] md:h-[80vh] lg:h-[85vh] xl:h-[90vh] z-30 pointer-events-auto filter drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)] transform-gpu"
         >
           <img 
             src="/chr2.png" 
             alt="Tactical Operative 2" 
-            className="h-full w-auto max-w-none object-contain object-bottom"
+            className="h-full w-auto max-w-none object-contain object-bottom transform-gpu"
           />
         </motion.div>
       </div>
@@ -161,9 +163,9 @@ export default function Hero() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 1.4, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          className="absolute top-[50%] sm:top-1/2 -translate-y-1/2 left-4 xl:left-8 flex-col max-w-[240px] xl:max-w-[280px] pointer-events-auto hidden md:flex"
+          className="absolute top-[50%] sm:top-1/2 -translate-y-1/2 left-4 xl:left-8 flex-col max-w-[240px] xl:max-w-[280px] pointer-events-auto hidden md:flex transform-gpu"
         >
-          <div className="bg-black/40 p-4 xl:p-5 border-l-[3px] border-[#F7B000] backdrop-blur-md">
+          <div className="bg-black/60 p-4 xl:p-5 border-l-[3px] border-[#F7B000] backdrop-blur-md shadow-2xl">
             <h3 className="text-[#F7B000] font-black uppercase text-[9px] xl:text-[10px] tracking-widest mb-3 opacity-90">
               CORE DIRECTIVE
             </h3>
@@ -171,7 +173,7 @@ export default function Hero() {
               We are passionate to find new & innovative technologies and implement them in our games. We are Exploring
               <br className="my-1.5" />
               
-              <span className="inline-block min-w-[145px] xl:min-w-[160px] h-[22px] text-white font-bold bg-black/60 px-2 py-0.5 border border-white/5 overflow-hidden align-middle relative my-1">
+              <span className="inline-block min-w-[145px] xl:min-w-[160px] h-[22px] text-white font-bold bg-black/80 px-2 py-0.5 border border-white/15 overflow-hidden align-middle relative my-1">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={currentTechIndex}
@@ -197,12 +199,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6, ease: "easeOut" }}
-          className="absolute bottom-12 sm:bottom-24 lg:bottom-28 inset-x-0 flex justify-center items-center space-x-2 sm:space-x-8 pointer-events-none px-2 z-50 w-full"
+          className="absolute bottom-12 sm:bottom-24 lg:bottom-28 inset-x-0 flex justify-center items-center space-x-3 sm:space-x-8 pointer-events-none px-2 z-50 w-full transform-gpu"
         >
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="pointer-events-auto relative px-4 py-3 sm:px-8 sm:py-4 bg-[#F7B000] border-2 border-[#0a0a0f] transform -skew-x-12 shadow-[4px_4px_0px_0px_#0a0a0f,6px_6px_0px_0px_#FF003C] hover:bg-[#FF003C] hover:text-white transition-colors duration-200 group cursor-pointer"
+            className="pointer-events-auto relative px-5 py-3.5 sm:px-8 sm:py-4 bg-[#F7B000] border-2 border-[#0a0a0f] transform -skew-x-12 shadow-[4px_4px_0px_0px_#0a0a0f,6px_6px_0px_0px_#FF003C] hover:bg-[#FF003C] hover:text-white transition-colors duration-200 group cursor-pointer"
           >
             <div className="transform skew-x-12 flex items-center space-x-2">
               <span className="text-[10px] sm:text-sm font-black text-[#0a0a0f] group-hover:text-white tracking-widest uppercase">
@@ -214,7 +216,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="pointer-events-auto relative px-4 py-3 sm:px-8 sm:py-4 bg-white border-2 border-[#0a0a0f] transform -skew-x-12 shadow-[4px_4px_0px_0px_#F7B000] hover:bg-[#0a0a0f] group transition-colors duration-200 cursor-pointer"
+            className="pointer-events-auto relative px-5 py-3.5 sm:px-8 sm:py-4 bg-white border-2 border-[#0a0a0f] transform -skew-x-12 shadow-[4px_4px_0px_0px_#F7B000] hover:bg-[#0a0a0f] group transition-colors duration-200 cursor-pointer"
           >
             <div className="transform skew-x-12 flex items-center space-x-2">
               <span className="text-[10px] sm:text-sm font-black text-[#0a0a0f] group-hover:text-[#F7B000] tracking-widest uppercase">
@@ -229,7 +231,7 @@ export default function Hero() {
       {/* ========================================================
           LAYER 4: BRUTALIST V-CUT DIVIDER
           ======================================================== */}
-      <div className="absolute bottom-[-1px] left-0 w-full z-40 pointer-events-none drop-shadow-[0_-10px_25px_rgba(247,176,0,0.15)]">
+      <div className="absolute bottom-[-1px] left-0 w-full z-40 pointer-events-none drop-shadow-[0_-10px_25px_rgba(247,176,0,0.15)] transform-gpu">
         <svg 
           viewBox="0 0 1440 120" 
           fill="none" 

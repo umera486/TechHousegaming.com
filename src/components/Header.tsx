@@ -100,7 +100,7 @@ export default function Header({ onComplete }: HeaderProps) {
   return (
     <div
       ref={preloaderRef}
-      className="fixed inset-0 z-60 overflow-hidden select-none"
+      className="fixed inset-0 z-50 overflow-hidden select-none transform-gpu"
       style={{ fontFamily: "'Satoshi', sans-serif" }} 
     >
       {/* ==============================================
@@ -108,14 +108,14 @@ export default function Header({ onComplete }: HeaderProps) {
           ============================================== */}
       <div 
         ref={topDoorRef} 
-        className="absolute top-0 left-0 w-full h-[50vh] bg-[#110E1B]"
+        className="absolute top-0 left-0 w-full h-[50vh] bg-[#110E1B] transform-gpu"
         style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_#2a2a35_0%,_transparent_100%)] opacity-60"></div>
         <div className="absolute bottom-0 left-0 w-full h-4 sm:h-6 border-b-4 border-[#22223b] shadow-2xl z-20 overflow-hidden">
           <div
             ref={topStripeRef}
-            className="w-[calc(100%+100px)] h-full"
+            className="w-[calc(100%+100px)] h-full transform-gpu"
             style={{
               backgroundImage: `repeating-linear-gradient(45deg, #22223b, #22223b 30px, #F7B000 30px, #F7B000 60px)`,
               backgroundSize: "84.85px 84.85px",
@@ -130,14 +130,14 @@ export default function Header({ onComplete }: HeaderProps) {
           ============================================== */}
       <div 
         ref={bottomDoorRef} 
-        className="absolute bottom-0 left-0 w-full h-[50vh] bg-[#110E1B]"
+        className="absolute bottom-0 left-0 w-full h-[50vh] bg-[#110E1B] transform-gpu"
         style={{ willChange: "transform", transform: "translateZ(0)", backfaceVisibility: "hidden" }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#2a2a35_0%,_transparent_100%)] opacity-60"></div>
         <div className="absolute top-0 left-0 w-full h-4 sm:h-6 border-t-4 border-[#22223b] shadow-2xl z-20 overflow-hidden">
           <div
             ref={bottomStripeRef}
-            className="w-[calc(100%+100px)] h-full"
+            className="w-[calc(100%+100px)] h-full transform-gpu"
             style={{
               backgroundImage: `repeating-linear-gradient(45deg, #22223b, #22223b 30px, #F7B000 30px, #F7B000 60px)`,
               backgroundSize: "84.85px 84.85px",
@@ -150,12 +150,12 @@ export default function Header({ onComplete }: HeaderProps) {
       {/* ==============================================
           THE SHUTTER WRAPPER (Center UI)
           ============================================== */}
-      <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none p-4">
+      <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none p-4 transform-gpu">
         
         {/* Glowing Laser Slit */}
         <div 
           ref={glowingLineRef}
-          className="absolute w-full max-w-2xl h-[2px] bg-[#FF003C] opacity-0 shadow-[0_0_20px_5px_#FF003C]"
+          className="absolute w-full max-w-2xl h-[2px] bg-[#FF003C] opacity-0 shadow-[0_0_20px_5px_#FF003C] transform-gpu"
           style={{ transform: "scaleX(0) translateZ(0)", willChange: "transform, opacity" }}
         ></div>
 
@@ -169,7 +169,7 @@ export default function Header({ onComplete }: HeaderProps) {
             transform: "translateZ(0)", 
             backfaceVisibility: "hidden" 
           }}
-          className="w-full max-w-md"
+          className="w-full max-w-md transform-gpu"
         >
           {/* Main Glass Box with Cyberpunk Cut Corners */}
           <div 
@@ -180,22 +180,22 @@ export default function Header({ onComplete }: HeaderProps) {
             <div className="relative h-16 w-36 sm:h-20 sm:w-44 flex items-center justify-center bg-black p-2 border-2 border-[#F7B000] shadow-[4px_4px_0px_0px_#FF003C]">
               <img 
                 src="/logo1.webp" 
-                alt="TechHouse Gaming Logo" 
+                alt="Tech House Games Logo" 
                 className="h-full w-full object-contain filter drop-shadow-[0_0_8px_rgba(247,176,0,0.5)]"
               />
             </div>
 
-            {/* Sharp Cut Badge */}
+            {/* Sharp Cut Badge with Lethal Satoshi Typography */}
             <div 
-              className="px-6 py-1.5 bg-[#F7B000] text-[#22223b] uppercase tracking-[0.3em] text-[9px] md:text-xs font-black"
+              className="px-5 py-1.5 bg-[#F7B000] text-[#22223b] uppercase tracking-[0.35em] text-[10px] md:text-xs font-black font-mono"
               style={{ clipPath: "polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)" }}
             >
-              TECHHOUSE GAMING KERNEL
+              TECH HOUSE <span className="text-[#FF003C]">GAMES</span> // KERNEL
             </div>
 
-            {/* Scaled-down Balanced Counter */}
-            <div className="flex justify-center items-end leading-none py-2">
-              <span className="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter drop-shadow-lg text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400">
+            {/* Scaled-down Balanced Counter with Cyber Glow */}
+            <div className="flex justify-center items-end leading-none py-1">
+              <span className="text-6xl sm:text-7xl md:text-8xl font-black italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]">
                 {displayProgress}
               </span>
               <span className="text-2xl sm:text-3xl md:text-4xl font-black italic text-[#FF003C] mb-2 sm:mb-3 ml-1">
@@ -204,14 +204,16 @@ export default function Header({ onComplete }: HeaderProps) {
             </div>
 
             {/* Smooth Loading Bar Line */}
-            <div className="w-full max-w-xs h-1.5 bg-[#110E1B] overflow-hidden skew-x-[-20deg]">
+            <div className="w-full max-w-xs h-1.5 bg-[#110E1B] overflow-hidden skew-x-[-20deg] border border-white/10">
                <div 
-                 className="h-full bg-[#F7B000]"
+                 className="h-full bg-gradient-to-r from-[#F7B000] to-[#FF003C]"
                  style={{ width: `${displayProgress}%`, transition: 'width 0.1s linear' }}
                ></div>
             </div>
 
-            <div className="text-[9px] sm:text-[10px] text-[#F7B000] font-bold tracking-[0.3em] uppercase mt-1">
+            {/* Terminal Style Initializing Text */}
+            <div className="text-[9px] sm:text-[10px] text-gray-300 font-mono font-bold tracking-[0.3em] uppercase mt-1 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#FF003C] animate-pulse"></span>
               SYSTEM INITIALIZING...
             </div>
           </div>
