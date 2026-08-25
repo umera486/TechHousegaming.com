@@ -1,6 +1,5 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap');
 @import 'tailwindcss';
-/* Baki tumhari 40 lines exactly waisi hi rahengi */
 
 :root {
    --background: #0a0a0f;

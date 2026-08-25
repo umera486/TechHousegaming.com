@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TechHouse Games | AAA Developers",
+  title: "Tech House Games | TrueTeam Developers",
   description: "Next-Gen Mobile Games Developers & Publishers",
 };
 
@@ -25,10 +25,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      {/* Absolute clean body, ready for stacking components */}
-      <body className="min-h-full flex flex-col bg-[#0a0a0f]">
+      <body className="bg-[#0a0a0f] text-white selection:bg-[#F7B000] selection:text-black">
         {children}
       </body>
     </html>
